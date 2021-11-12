@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="2.11">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="aleja"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2021-11-12 12:52:20 PM"/>
+        <attribute name="created" value="YWxlamE7REVTS1RPUC1KSE9JTDJKOzIwMjEtMTEtMTI7MTE6NTU6NDAgQU07Mjg0NQ=="/>
+        <attribute name="edited" value="YWxlamE7REVTS1RPUC1KSE9JTDJKOzIwMjEtMTEtMTI7MTI6NDg6MjEgUE07MjthbGVqYTtERVNLVE9QLUpIT0lMMko7MjAyMS0xMS0wOTswMTozMzo1OCBQTTtQUzhQMS5mcHJnOzY3ODQ="/>
+        <attribute name="edited" value="YWxlamE7REVTS1RPUC1KSE9JTDJKOzIwMjEtMTEtMTI7MTI6NTI6MjAgUE07MTsyOTY0"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="response" type="String" array="False" size=""/>
+            <declare name="length" type="Real" array="False" size=""/>
+            <declare name="width" type="Real" array="False" size=""/>
+            <declare name="height" type="Real" array="False" size=""/>
+            <declare name="square" type="Real" array="False" size=""/>
+            <declare name="gal" type="Real" array="False" size=""/>
+            <output expression="&quot;Do you want to compute the number of gallons of paint needed? (Yes or No)&quot;" newline="True"/>
+            <input variable="response"/>
+            <while expression="response = &quot;Yes&quot;">
+                <output expression="&quot;Enter length of room&quot;" newline="True"/>
+                <input variable="length"/>
+                <output expression="&quot;Enter width of room&quot;" newline="True"/>
+                <input variable="width"/>
+                <output expression="&quot;Enter height of room&quot;" newline="True"/>
+                <input variable="height"/>
+                <call expression="compsquare(length,width,height)"/>
+                <assign variable="square" expression="compsquare(length,width,height)"/>
+                <call expression="compgal(square)"/>
+                <assign variable="gal" expression="compgal(square)"/>
+                <output expression="&quot;Gallons of painted needed to cover the entire room: &quot; &amp; gal" newline="True"/>
+                <output expression="&quot;Do you want to compute the number of gallons of paint needed? (Yes or No)&quot;" newline="True"/>
+                <input variable="response"/>
+            </while>
+        </body>
+    </function>
+    <function name="compgal" type="Real" variable="gal">
+        <parameters>
+            <parameter name="square" type="Real" array="False"/>
+        </parameters>
+        <body>
+            <declare name="gal" type="Real" array="False" size=""/>
+            <assign variable="gal" expression="square / 50"/>
+        </body>
+    </function>
+    <function name="compsquare" type="Real" variable="square">
+        <parameters>
+            <parameter name="length" type="Real" array="False"/>
+            <parameter name="width" type="Real" array="False"/>
+            <parameter name="height" type="Real" array="False"/>
+        </parameters>
+        <body>
+            <declare name="square" type="Real" array="False" size=""/>
+            <assign variable="square" expression="(2 * length * width) + (2 * length * height) + (2 * width * height)"/>
+        </body>
+    </function>
+</flowgorithm>
