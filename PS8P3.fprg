@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="2.11">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="aleja"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2021-11-13 02:03:51 PM"/>
+        <attribute name="created" value="YWxlamE7REVTS1RPUC1KSE9JTDJKOzIwMjEtMTEtMTM7MDE6MDk6MTIgUE07Mjg1OA=="/>
+        <attribute name="edited" value="YWxlamE7REVTS1RPUC1KSE9JTDJKOzIwMjEtMTEtMTM7MDE6MTE6MTEgUE07MTthbGVqYTtERVNLVE9QLUpIT0lMMko7MjAyMS0xMS0wOTswMTozMzo1OCBQTTtQUzhQMS5mcHJnOzY3NzE="/>
+        <attribute name="edited" value="YWxlamE7REVTS1RPUC1KSE9JTDJKOzIwMjEtMTEtMTM7MDI6MDM6NTEgUE07MTsyOTY0"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="response" type="String" array="False" size=""/>
+            <declare name="make" type="String" array="False" size=""/>
+            <declare name="model" type="String" array="False" size=""/>
+            <declare name="electric" type="String" array="False" size=""/>
+            <declare name="MSRP" type="Real" array="False" size=""/>
+            <declare name="total" type="Real" array="False" size=""/>
+            <declare name="totmsrp" type="Real" array="False" size=""/>
+            <declare name="Sum" type="Real" array="False" size=""/>
+            <assign variable="totmsrp" expression="0"/>
+            <assign variable="Sum" expression="0"/>
+            <output expression="&quot;Do you want to compute sales price of cars (Yes or No)&quot;" newline="True"/>
+            <input variable="response"/>
+            <while expression="response = &quot;Yes&quot;">
+                <output expression="&quot;Enter make of car&quot;" newline="True"/>
+                <input variable="make"/>
+                <output expression="&quot;Enter model of car&quot;" newline="True"/>
+                <input variable="model"/>
+                <output expression="&quot;Is vehicle electric? (Y or N)&quot;" newline="True"/>
+                <input variable="electric"/>
+                <output expression="&quot;Enter MSRP&quot;" newline="True"/>
+                <input variable="MSRP"/>
+                <assign variable="totmsrp" expression="totmsrp + MSRP"/>
+                <call expression="comptotal(make,model,electric,MSRP)"/>
+                <assign variable="total" expression="comptotal(make,model,electric,MSRP)"/>
+                <assign variable="sum" expression="sum + total"/>
+                <output expression="&quot;Car's sales price is $&quot; &amp; total" newline="True"/>
+                <output expression="&quot;Do you want to compute sales price of cars (Yes or No)&quot;" newline="True"/>
+                <input variable="response"/>
+            </while>
+            <output expression="&quot;Sum of all MSRP is $&quot; &amp; totmsrp" newline="True"/>
+            <output expression="&quot;Sum of all sales price of cars is $&quot; &amp; sum" newline="True"/>
+        </body>
+    </function>
+    <function name="comptotal" type="Real" variable="total">
+        <parameters>
+            <parameter name="make" type="String" array="False"/>
+            <parameter name="model" type="String" array="False"/>
+            <parameter name="electric" type="String" array="False"/>
+            <parameter name="MSRP" type="Real" array="False"/>
+        </parameters>
+        <body>
+            <declare name="total" type="Real" array="False" size=""/>
+            <if expression="make = &quot;Honda&quot; and model = &quot;Accord&quot;">
+                <then>
+                    <assign variable="total" expression="MSRP - (MSRP * .1) + (MSRP * .07)"/>
+                </then>
+                <else>
+                    <if expression="make = &quot;Toyota&quot; and model = &quot;Rav4&quot;">
+                        <then>
+                            <assign variable="total" expression="MSRP - (MSRP * .15) + (MSRP * .07)"/>
+                        </then>
+                        <else>
+                            <if expression="electric = &quot;Y&quot;">
+                                <then>
+                                    <assign variable="total" expression="MSRP - (MSRP * .3) + (MSRP * .07)"/>
+                                </then>
+                                <else>
+                                    <assign variable="total" expression="MSRP - (MSRP * .05) + (MSRP * .07)"/>
+                                </else>
+                            </if>
+                        </else>
+                    </if>
+                </else>
+            </if>
+        </body>
+    </function>
+</flowgorithm>
