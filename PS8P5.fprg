@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="2.11">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="aleja"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2021-11-13 04:42:19 PM"/>
+        <attribute name="created" value="YWxlamE7REVTS1RPUC1KSE9JTDJKOzIwMjEtMTEtMTM7MDM6NTY6NDEgUE07Mjg2NA=="/>
+        <attribute name="edited" value="YWxlamE7REVTS1RPUC1KSE9JTDJKOzIwMjEtMTEtMTM7MDM6NTc6NDIgUE07MTthbGVqYTtERVNLVE9QLUpIT0lMMko7MjAyMS0xMS0xMzswMTowOToxMiBQTTtQUzhQMy5mcHJnOzY3Nzc="/>
+        <attribute name="edited" value="YWxlamE7REVTS1RPUC1KSE9JTDJKOzIwMjEtMTEtMTM7MDQ6NDI6MTkgUE07MTsyOTcz"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="response" type="String" array="False" size=""/>
+            <declare name="county" type="String" array="False" size=""/>
+            <declare name="market" type="Real" array="False" size=""/>
+            <declare name="assessed" type="Real" array="False" size=""/>
+            <output expression="&quot;Do you want to compute assessed value? (Yes or No)&quot;" newline="True"/>
+            <input variable="response"/>
+            <while expression="response = &quot;Yes&quot;">
+                <output expression="&quot;Enter County&quot;" newline="True"/>
+                <input variable="county"/>
+                <output expression="&quot;Enter Market value&quot;" newline="True"/>
+                <input variable="market"/>
+                <call expression="compvalue(county,market)"/>
+                <assign variable="assessed" expression="compvalue(county,market)"/>
+                <output expression="&quot;Assessed value of home is $&quot; &amp; assessed" newline="True"/>
+                <output expression="&quot;Do you want to compute assessed value? (Yes or No)&quot;" newline="True"/>
+                <input variable="response"/>
+            </while>
+        </body>
+    </function>
+    <function name="compvalue" type="Real" variable="assessed">
+        <parameters>
+            <parameter name="county" type="String" array="False"/>
+            <parameter name="market" type="Real" array="False"/>
+        </parameters>
+        <body>
+            <declare name="assessed" type="Real" array="False" size=""/>
+            <if expression="county = &quot;Cook&quot;">
+                <then>
+                    <assign variable="assessed" expression=".9 * market"/>
+                </then>
+                <else>
+                    <if expression="county = &quot;Dupage&quot;">
+                        <then>
+                            <assign variable="assessed" expression=".8 * market"/>
+                        </then>
+                        <else>
+                            <if expression="county = &quot;McHenry&quot;">
+                                <then>
+                                    <assign variable="assessed" expression=".75 * market"/>
+                                </then>
+                                <else>
+                                    <if expression="county = &quot;Kane&quot;">
+                                        <then>
+                                            <assign variable="assessed" expression=".6 * market"/>
+                                        </then>
+                                        <else>
+                                            <assign variable="assessed" expression=".7 * market"/>
+                                        </else>
+                                    </if>
+                                </else>
+                            </if>
+                        </else>
+                    </if>
+                </else>
+            </if>
+        </body>
+    </function>
+</flowgorithm>
