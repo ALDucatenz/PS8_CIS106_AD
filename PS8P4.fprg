@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="2.11">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="aleja"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2021-11-13 03:18:54 PM"/>
+        <attribute name="created" value="YWxlamE7REVTS1RPUC1KSE9JTDJKOzIwMjEtMTEtMTM7MDI6NTU6MTkgUE07Mjg2Nw=="/>
+        <attribute name="edited" value="YWxlamE7REVTS1RPUC1KSE9JTDJKOzIwMjEtMTEtMTM7MDI6NTU6NTMgUE07MTthbGVqYTtERVNLVE9QLUpIT0lMMko7MjAyMS0xMS0xMzswMTowOToxMiBQTTtQUzhQMy5mcHJnOzY3NzY="/>
+        <attribute name="edited" value="YWxlamE7REVTS1RPUC1KSE9JTDJKOzIwMjEtMTEtMTM7MDM6MTg6NTQgUE07MTsyOTc0"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="response" type="String" array="False" size=""/>
+            <declare name="name" type="String" array="False" size=""/>
+            <declare name="miles" type="Real" array="False" size=""/>
+            <declare name="price" type="Real" array="False" size=""/>
+            <declare name="totprice" type="Real" array="False" size=""/>
+            <assign variable="totprice" expression="0"/>
+            <output expression="&quot;Do you want to compute ticket price?(Yes or No)&quot;" newline="True"/>
+            <input variable="response"/>
+            <while expression="response = &quot;Yes&quot;">
+                <output expression="&quot;Enter lastname&quot;" newline="True"/>
+                <input variable="name"/>
+                <output expression="&quot;Enter miles from downtown Chicago&quot;" newline="True"/>
+                <input variable="miles"/>
+                <call expression="compprice(miles)"/>
+                <assign variable="price" expression="compprice(miles)"/>
+                <assign variable="totprice" expression="totprice + price"/>
+                <output expression="name &amp; &quot;, price of ticket is $&quot; &amp; price" newline="True"/>
+                <output expression="&quot;Do you want to compute ticket price?(Yes or No)&quot;" newline="True"/>
+                <input variable="response"/>
+            </while>
+            <output expression="&quot;Sum of all tickets is $&quot; &amp; totprice" newline="True"/>
+        </body>
+    </function>
+    <function name="compprice" type="Real" variable="price">
+        <parameters>
+            <parameter name="miles" type="Real" array="False"/>
+        </parameters>
+        <body>
+            <declare name="price" type="Real" array="False" size=""/>
+            <if expression="miles &gt;= 30">
+                <then>
+                    <assign variable="price" expression="12"/>
+                </then>
+                <else>
+                    <if expression="miles &gt;= 20">
+                        <then>
+                            <assign variable="price" expression="10"/>
+                        </then>
+                        <else>
+                            <if expression="miles &gt;= 10">
+                                <then>
+                                    <assign variable="price" expression="8"/>
+                                </then>
+                                <else>
+                                    <assign variable="price" expression="5"/>
+                                </else>
+                            </if>
+                        </else>
+                    </if>
+                </else>
+            </if>
+        </body>
+    </function>
+</flowgorithm>
